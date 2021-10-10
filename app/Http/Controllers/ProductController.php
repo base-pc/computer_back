@@ -11,7 +11,6 @@ use App\Services\ProductService;
 
 class ProductController extends Controller
 {
-
     public function index()
     {
         $products = Product::all();
