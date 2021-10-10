@@ -612,6 +612,8 @@ class ComposerStaticInit865cdabc26e90280005c236a83e464f3
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Services\\AvatarService' => __DIR__ . '/../..' . '/app/Services/AvatarService.php',
+        'App\\Services\\CategoryService' => __DIR__ . '/../..' . '/app/Services/CategoryService.php',
+        'App\\Services\\ProductService' => __DIR__ . '/../..' . '/app/Services/ProductService.php',
         'App\\Services\\UploadService' => __DIR__ . '/../..' . '/app/Services/UploadService.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',

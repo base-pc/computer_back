@@ -44,6 +44,8 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Services\\AvatarService' => $baseDir . '/app/Services/AvatarService.php',
+    'App\\Services\\CategoryService' => $baseDir . '/app/Services/CategoryService.php',
+    'App\\Services\\ProductService' => $baseDir . '/app/Services/ProductService.php',
     'App\\Services\\UploadService' => $baseDir . '/app/Services/UploadService.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/CorsService.php',
