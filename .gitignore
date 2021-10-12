@@ -1,3 +1,8 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/laravel
+# Edit at https://www.toptal.com/developers/gitignore?templates=laravel
+
+### Laravel ###
 /vendor/
 node_modules/
 npm-debug.log
@@ -14,15 +19,12 @@ public/hot
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage
 public_html/hot
-mysql
-mysql/
-/mysql
-.env
-storage
 
 storage/*.key
-         .env
-         Homestead.yaml
-         Homestead.json
-         /.vagrant
-         .phpunit.result.cache
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
+
+# End of https://www.toptal.com/developers/gitignore/api/laravel
