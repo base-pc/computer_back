@@ -9,6 +9,7 @@ npm-debug.log
 yarn-error.log
 mysql/
 mysql/laraapp_db/.*
+storage/
 
 tags
 tags.lock
