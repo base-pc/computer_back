@@ -14,6 +14,11 @@ public/hot
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage
 public_html/hot
+mysql
+mysql/
+/mysql
+.env
+storage
 
 storage/*.key
          .env
@@ -21,7 +26,3 @@ storage/*.key
          Homestead.json
          /.vagrant
          .phpunit.result.cache
-         tags
-         mysql
-         mysql/
-         /mysql
