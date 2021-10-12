@@ -8,6 +8,9 @@ node_modules/
 npm-debug.log
 yarn-error.log
 mysql/
+tags
+tags.lock
+tags.temp
 
 
 # Laravel 4 specific
