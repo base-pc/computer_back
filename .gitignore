@@ -23,3 +23,5 @@ storage/*.key
          .phpunit.result.cache
          tags
          mysql
+         mysql/
+         /mysql
