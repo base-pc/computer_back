@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Services\UploadService;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ProductService;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
-use Spatie\Searchable\Search;
 
 class Product extends Model implements Searchable
 {
@@ -64,81 +62,41 @@ class Product extends Model implements Searchable
 
     public function showProduct($id)
     {
-        $product = Product::with('comments')
-            ->where('id', $id)
-            ->get();
+        $product = new ProductService;
 
-        return $product;
+        return $product->showProductById($id);
     }
 
     public function storeProduct(User $user, array $data, $upload, $id)
     {
-        $product  = new Product;
-        $photo    = new UploadService;
 
-        try {
-            $check_id = Category::where('id', $id)->first();
-        } catch(\Illuminate\Database\QueryException $exception) {
-            //return response()->json(['Category not found']);
-            dd('category not found');
-        }
+        $product = new ProductService;
 
-        //$check_id = Category::findOrFail($id);
-
-        $photo->setImage($upload);
-
-        $product->user_id       = $user->id;
-        $product->category_id   = $id;
-        $product->product_owner = $user->fullname;
-        $product->photo_url     = $photo->getPhotoUrl();
-        $product->photo_name    = $photo->getPhotoName();
-
-        $product->fill($data);
-
-
-        $product->save();
+        $product->storeMyProduct($user, $data, $upload, $id);
     }
 
     public function destroyProduct($id)
     {
-        $product = Product::findOrFail($id);
+        $product = new ProductService;
 
-        $product->delete();
+        $product->destroyMyProduct($id);
     }
 
     public function updateProduct($id, array $data, $upload)
     {
-        $product = Product::findOrFail($id);
-        $photo = new UploadService;
 
-        if($upload)
-        {
-            $photo->setImage($upload);
+        $product = new ProductService;
 
-            Storage::disk('products')->delete($product->photo_name);
+        $product->updateMyProduct($id, $data, $upload);
 
-            $product->photo_url  = $photo->getPhotoUrl();
-            $product->photo_name = $photo->getPhotoName();
-
-            $product->update($data);
-
-        }else {
-            $product->update($data);
-        }
     }
 
     public function performSearch ($request)
     {
-        $searchResults = (new Search())
-            ->registerModel(Product::class, [
-                'name',
-                'manufacturer',
-                'price',
-                'quantity',
-            ])
-            ->perform($request->get('search'));
+        $product = new ProductService;
 
-        return $searchResults;
+        return $product->searchProduct($request);
+
     }
 
 
