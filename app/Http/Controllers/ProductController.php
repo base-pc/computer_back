@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\ProductStoreRrequest;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Services\CategoryService;
-use App\Services\ProductService;
 
 class ProductController extends Controller
 {
@@ -47,27 +44,15 @@ class ProductController extends Controller
     {
         $user = auth()->user();
         $upload = $product->photo = $request->file('photo');
+        $product->storeProduct($user, $request->all(), $upload, $id);
 
-        try {
-            $category = (new CategoryService())->findById($id);
-            $product->storeProduct($user, $request->all(), $upload, $id);
-        }catch(ModelNotFoundException $exception){
-            return response()->json(['MESSAGE'=> $exception->getMessage()]);
-        }
 
         return response()->json(['MESSAGE'=>'A product has been added']);
     }
 
     public function destroy($id, Product $product)
     {
-
-        try {
-            $product = (new ProductService())->findById($id);
-            $product->destroyProduct($id);
-
-        }catch(ModelNotFoundException $exception){
-            return response()->json(['MESSAGE'=> $exception->getMessage()]);
-        }
+        $product->destroyProduct($id);
 
         return response()->json(['MESSAGE'=>'A product has been deleted']);
     }
@@ -76,12 +61,7 @@ class ProductController extends Controller
     {
         $upload = $product->photo = $request->file('photo');
 
-        try {
-            $product = (new ProductService())->findById($id);
-            $product->updateProduct($id, $request->all(), $upload);
-        }catch(ModelNotFoundException $exception){
-            return response()->json(['MESSAGE'=> $exception->getMessage()]);
-        }
+        $product->updateProduct($id, $request->all(), $upload);
 
         return response()->json(['MESSAGE'=>'A product has been updated']);
     }
