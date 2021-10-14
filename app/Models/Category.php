@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Services\CategoryService;
 
 class Category extends Model
 {
@@ -20,26 +21,24 @@ class Category extends Model
 
     public function showCategory($id)
     {
-        $category = Category::with('products')
-            ->where('id', $id)
-            ->get();
+        $category = new CategoryService;
 
-        return $category;
+        $category->ShowCategoryById($id);
     }
 
     public function storeCategory(array $data)
     {
-        $category = new Category;
+        $category = new CategoryService;
 
-        $category->fill($data);
+        $category->storeMyCategory($data);
 
-        $category->save();
     }
 
     public function destroyCategory($id)
     {
-        $category = Category::findOrFail($id);
+        $category = new CategoryService;
 
-        $category->delete();
+        $category->destroyMyCategory($id);
+
     }
 }
