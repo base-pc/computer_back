@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Services\AvatarService;
+use App\Services\GoogleService;
 use JWTAuth;
 
 class User extends Authenticatable implements JWTSubject
@@ -74,33 +75,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function googleCallback($user)
     {
+        $google = new GoogleService;
 
-        $fullname = $user->getName();
-        $avatar   = $user->getAvatar();
-        $email    = $user->getEmail();
+        return $google->Glogin($user);
 
-
-        $this->user = User::where([
-            'fullname' => $fullname,
-            'email'    => $email,
-            'avatar'   => $avatar,
-        ])->first();
-
-
-        $user = User::firstOrCreate([
-            'fullname' => $fullname,
-            'email'    => $email,
-            'avatar'   => $avatar,
-        ]);
-
-        $token = JWTAuth::fromUser($user);
-
-        return [
-            'access_token' => $token,
-            'fullname'     => $fullname,
-            'email'        => $email,
-            'avatar'       => $avatar,
-        ];
     }
 
     public function setDefaultAvatar ($user)
@@ -113,3 +91,4 @@ class User extends Authenticatable implements JWTSubject
         $user->save();
     }
 }
+

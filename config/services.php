@@ -31,8 +31,8 @@ return [
     ],
 
     'google' => [
-        'client_id' => '330533625286-5673scc40rk9b1osng7un882f14bj3o1.apps.googleusercontent.com',
-        'client_secret' => 'scBN11677BJq3FyIu_LnbErL',
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => 'http://127.0.0.1:8080/api/google/callback',
         // 'redirect' => 'http://citygame.ga:8080/api/google/callback',
     ],
