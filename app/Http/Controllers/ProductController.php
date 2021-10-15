@@ -32,6 +32,7 @@ class ProductController extends Controller
     public function showMyProducts()
     {
         $user = auth()->user();
+
         $my_products = $user->products()->get();
 
         return response()
@@ -43,7 +44,9 @@ class ProductController extends Controller
     public function store(ProductStoreRrequest $request, Product $product, $id)
     {
         $user = auth()->user();
+
         $upload = $product->photo = $request->file('photo');
+
         $product->storeProduct($user, $request->all(), $upload, $id);
 
 
