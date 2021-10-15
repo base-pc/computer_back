@@ -3,23 +3,14 @@
 namespace App\Services;
 
 use App\Models\Product;
-use App\Models\User;
-use \Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Services\UploadService;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Searchable\Search;
+use App\Models\Category;
 
 class ProductService
 {
-    public function findById($id)
-    {
-        $product = Product::where('id', $id)->first();
 
-        if(!$product){
-            throw new ModelNotFoundException('Product not found by id');
-        }
-        return $product;
-    }
 
     public function showProductById($id)
     {
@@ -36,6 +27,7 @@ class ProductService
         $product  = new Product;
         $photo    = new UploadService;
 
+        $category = Category::findOrFail($id);
 
         $photo->setImage($upload);
 
