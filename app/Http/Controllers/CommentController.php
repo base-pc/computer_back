@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
+use App\Repositories\Comment\CommentRepository;
 
 class CommentController extends Controller
 {
-    public function store(StoreCommentRequest $request, Comment $comment, $id)
+    private $comment;
+
+    public function __construct(CommentRepository $comment)
     {
-        $user =  auth()->user();
+        $this->comment = $comment;
+    }
 
-        $comment->storeComment($user, $request->all(), $id);
+    public function store(StoreCommentRequest $request, $product_id)
+    {
+        $user = auth()->user();
 
-        return response()->json(['MESSAGE'=>'A comment has been added'], 200, [], JSON_UNESCAPED_SLASHES);
+        return $this->comment->store($user, $product_id, $request->all());
+
     }
 }
