@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Services\ProductService;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 
@@ -59,45 +58,4 @@ class Product extends Model implements Searchable
             $this->name,
         );
     }
-
-    public function showProduct($id)
-    {
-        $product = new ProductService;
-
-        return $product->showProductById($id);
-    }
-
-    public function storeProduct(User $user, array $data, $upload, $id)
-    {
-
-        $product = new ProductService;
-
-        $product->storeMyProduct($user, $data, $upload, $id);
-    }
-
-    public function destroyProduct($id)
-    {
-        $product = new ProductService;
-
-        $product->destroyMyProduct($id);
-    }
-
-    public function updateProduct($id, array $data, $upload)
-    {
-
-        $product = new ProductService;
-
-        $product->updateMyProduct($id, $data, $upload);
-
-    }
-
-    public function performSearch ($request)
-    {
-        $product = new ProductService;
-
-        return $product->searchProduct($request);
-
-    }
-
-
 }

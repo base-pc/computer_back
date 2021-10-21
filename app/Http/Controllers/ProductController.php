@@ -3,70 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Http\Requests\ProductStoreRrequest;
+use App\Repositories\Product\ProductRepository;
 
 class ProductController extends Controller
 {
+
+    private $product;
+
+    public function __construct(ProductRepository $product)
+    {
+        $this->product = $product;
+    }
+
     public function index()
     {
-        $products = Product::all();
-
-        return response()
-            ->json([
-                'ALL_PRODUCTS'=>$products
-            ], 200, [], JSON_UNESCAPED_SLASHES);
-
+        return $this->product->index();
     }
 
-    public function show($id, Product $product)
+    public function show($product_id)
     {
-        $product_with_comments = $product->showProduct($id);
-
-        return response()
-            ->json([
-                'PRODUCT_WITH_COMMENTS'=> $product_with_comments
-            ], 200, [], JSON_UNESCAPED_SLASHES);
+        return $this->product->show($product_id);
     }
 
-    public function showMyProducts()
+    public function store(ProductStoreRrequest $request, $product_id)
     {
         $user = auth()->user();
+        $upload = $this->product->photo = $request->file('photo');
 
-        $my_products = $user->products()->get();
-
-        return response()
-            ->json([
-                'MY_PRODUCTS'=> $my_products
-            ], 200, [], JSON_UNESCAPED_SLASHES);
+        return $this->product->store($user, $product_id, $request->all(), $upload);
     }
 
-    public function store(ProductStoreRrequest $request, Product $product, $id)
+    public function update(Request $request, $product_id)
     {
-        $user = auth()->user();
+        return $this->product->update($product_id, $request->all());
 
-        $upload = $product->photo = $request->file('photo');
-
-        $product->storeProduct($user, $request->all(), $upload, $id);
-
-
-        return response()->json(['MESSAGE'=>'A product has been added']);
     }
 
-    public function destroy($id, Product $product)
+    public function destroy($product_id)
     {
-        $product->destroyProduct($id);
-
-        return response()->json(['MESSAGE'=>'A product has been deleted']);
+        $this->product->destroy($product_id);
     }
 
-    public function update($id, Request $request, Product $product)
+    public function search(Request $request)
     {
-        $upload = $product->photo = $request->file('photo');
-
-        $product->updateProduct($id, $request->all(), $upload);
-
-        return response()->json(['MESSAGE'=>'A product has been updated']);
+        return $this->product->search($request);
     }
-
 }
+

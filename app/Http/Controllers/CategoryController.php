@@ -3,44 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Services\CategoryService;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Repositories\Category\CategoryRepository;
 
 class CategoryController extends Controller
 {
+    private $category;
+
+    public function __construct(CategoryRepository $category)
+    {
+        $this->category = $category;
+    }
+
     public function index()
     {
-        $categories = Category::all();
-
-        return response()->json(['ALL_CATEGORIES'=>$categories]);
+        return $this->category->index();
     }
 
-    public function show($id, Category $category)
+    public function show($category_id)
     {
-        $categories_with_products = $category->showCategory($id);
-
-        return response()->json(['CATEGORIES_WITH_PRODUCRS'=>$categories_with_products]);
+        return $this->category->show($category_id);
     }
 
-    public function store(Request $request, Category $category)
+    public function showOpinions($category_id)
     {
-
-        $category->storeCategory($request->all());
-
-        return response()->json(['MESSAGE'=> 'A category has been added']);
+        return $this->category->showOpinions($category_id);
     }
 
-    public function destroy($id, Category $category)
+    public function store(Request $request)
     {
+        $user = auth()->user();
 
-        try {
-            $category = (new CategoryService())->findById($id);
-            $category->destroyCategory($id);
-        }catch(ModelNotFoundException $exception){
-            return response()->json(['MESSAGE' => $exception->getMessage()]);
-        }
+        return $this->category->store($user, $request->all());
+    }
 
-        return response()->json(['MESSAGE'=> 'A category has been deleted']);
+    public function destroy($category_id)
+    {
+        return $this->category->destroy($category_id);
     }
 }
