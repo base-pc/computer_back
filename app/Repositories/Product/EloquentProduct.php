@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Services\UploadService;
 use Spatie\Searchable\Search;
-use Spatie\Searchable\SearchResult;
 
 
 class EloquentProduct implements ProductRepository
@@ -35,9 +34,11 @@ class EloquentProduct implements ProductRepository
 	{
 		$category = Category::findOrFail($category_id);
 
+		$this->upload->setDisk('products');
 		$this->upload->setImage($upload);
 
 		$this->model->user_id       = $user->id;
+		$this->model->product_owner = $user->fullname;
 		$this->model->category_id   = $category->id;
 		$this->model->product_owner = $user->name;
 		$this->model->photo_url     = $this->upload->getPhotoUrl();

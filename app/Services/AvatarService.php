@@ -14,9 +14,13 @@ class AvatarService
 
         $avatar = new Avatar(config('laravolt.avatar'));
         $avatar->create($user->fullname)
-               ->save(public_path('storage/users_avatars/'.$image_name.'.png', $quality = 100));
+               ->save(storage_path(
+                   'app/public/avatars/'.$image_name.'.png',
+                   $quality = 100
+               ));
 
-        $image_url = Storage::disk('public')->url('users_avatars/'.$image_name.'.png');
+        $image_url = Storage::disk('avatars')
+            ->url('avatars/'.$image_name.'.png');
 
         return $image_url;
     }

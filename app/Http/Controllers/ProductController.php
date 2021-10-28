@@ -29,6 +29,7 @@ class ProductController extends Controller
     public function store(ProductStoreRrequest $request, $product_id)
     {
         $user = auth()->user();
+
         $upload = $this->product->photo = $request->file('photo');
 
         return $this->product->store($user, $product_id, $request->all(), $upload);
