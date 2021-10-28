@@ -13,7 +13,7 @@ class CategoryStoreRrequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class CategoryStoreRrequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'requied|string|between:3:35',
+            'icon' => 'requied|image:jpeg,png,svg|max:4048'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.requied' => 'This field is requied',
+            'icon.requied' => 'This field is requied',
+            'icon.image'   => 'You must enter correct file format',
         ];
     }
 }
