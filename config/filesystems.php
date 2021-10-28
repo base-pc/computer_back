@@ -44,13 +44,20 @@ return [
 
         'products' => [
             'driver'     => 'local',
-            'root'       => storage_path('public/products'),
+            'root'       => storage_path('app/public/products'),
             'url'        => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
         'avatars' => [
             'driver'     => 'local',
-            'root'       => storage_path('public/users_avatars'),
+            'root'       => storage_path('app/public/avatars'),
+            'url'        => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'categories' => [
+            'driver'     => 'local',
+            'root'       => storage_path('app/public/categories'),
             'url'        => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

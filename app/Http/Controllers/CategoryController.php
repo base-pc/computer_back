@@ -24,16 +24,13 @@ class CategoryController extends Controller
         return $this->category->show($category_id);
     }
 
-    public function showOpinions($category_id)
-    {
-        return $this->category->showOpinions($category_id);
-    }
-
     public function store(Request $request)
     {
         $user = auth()->user();
 
-        return $this->category->store($user, $request->all());
+        $upload = $this->category->icon = $request->file('icon');
+
+        return $this->category->store($user, $request->all(), $upload);
     }
 
     public function destroy($category_id)

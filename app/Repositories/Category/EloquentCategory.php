@@ -3,14 +3,16 @@
 namespace App\Repositories\Category;
 
 use App\Models\Category;
+use App\Services\UploadService;
 
 class EloquentCategory implements CategoryRepository
 {
 	private $model;
 
-	public function __construct(Category $model)
+	public function __construct(Category $model, UploadService $upload)
 	{
-		$this->model = $model;
+		$this->model  = $model;
+		$this->upload = $upload;
 	}
 
 
@@ -30,24 +32,19 @@ class EloquentCategory implements CategoryRepository
 		return $category;
 	}
 
-	public function store($user, array $attributes)
+	public function store($user, array $attributes, $upload)
 	{
+		$this->upload->setDisk('categories');
+		$this->upload->setImage($upload);
+
+		$this->model->iconu_url = $this->upload->getPhotoUrl();
+		$this->model->icon_name = $this->upload->getPhotoName();
 
 		$category = $this->model->fill($attributes);
 
 		$category->saveOrFail();
 	}
 
-	public function showOpinions($category_id)
-	{
-		$this->model->findOrFail($category_id);
-
-		$category = $this->model->with('products')
-						  ->where('id', $product_id)
-						  ->get();
-
-		return $category;
-	}
 
 	public function destroy($category_id)
 	{
