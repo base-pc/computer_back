@@ -50,7 +50,8 @@
         },
 
         "files": [
-            "app/Http/Helpers/guard.php"
+            "app/Http/Helpers/guard.php",
+            "app/Http/Helpers/RespondWithToken.php"
         ]
     },
     "autoload-dev": {

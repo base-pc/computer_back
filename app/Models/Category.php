@@ -11,8 +11,9 @@ class Category extends Model
 
     protected $fillable = [
         'name',
+        'product_owner',
         'icon',
-        'iconu_url',
+        'icon_url',
         'icon_name'
     ];
 
