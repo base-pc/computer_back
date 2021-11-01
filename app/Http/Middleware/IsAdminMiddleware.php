@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsNotAdmin
+class IsAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,16 +16,11 @@ class IsNotAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->admin != 1)
+        if (!auth()->check() || !auth()->user()->is_admin)
         {
-            return $next($request);
+            abort(403, 'Unauthorized');
         }
-        else
-        {
-            return response()
-                ->json([
-                    'WARNING'=> 'You are not authorized to perform this action'
-                ]);
-        }
+
+        return $next($request);
     }
 }

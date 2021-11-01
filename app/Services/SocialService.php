@@ -15,23 +15,23 @@ class SocialService
 
 
         $this->user = User::where([
-            'name'   => $name,
-            'email'  => $email,
-            'avatar' => $avatar,
+            'fullname' => $name,
+            'email'    => $email,
+            'avatar'   => $avatar,
         ])->first();
 
 
         $user = User::firstOrCreate([
-            'name'   => $name,
-            'email'  => $email,
-            'avatar' => $avatar,
+            'fullname' => $name,
+            'email'    => $email,
+            'avatar'   => $avatar,
         ]);
 
         $token = JWTAuth::fromUser($user);
 
         return [
             'access_token' => $token,
-            'name'         => $name,
+            'fullname'     => $name,
             'email'        => $email,
             'avatar'       => $avatar,
         ];
