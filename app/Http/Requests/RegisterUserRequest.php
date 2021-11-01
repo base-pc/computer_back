@@ -27,7 +27,7 @@ class RegisterUserRequest extends FormRequest
             'email'    => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
             'avatar'   => 'mimes:jpeg,png',
-            'admin' => 'bool'
+            'is_admin' => 'bool'
 
             //
         ];
@@ -36,14 +36,13 @@ class RegisterUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'fullname.required'  => 'To pole jest wymagane',
-            'email.required'     => 'To pole jest wymagane',
-            'email.string'       => 'Wprowadzony email jest niepoprawny',
-            'email.unique'       => 'Podany adres email jest zajęty',
-            'email.email'        => 'Wprowadzony adres jest niepoprawny',
-            'password.min'       => 'Hasło ma miec 6 znaków',
-            'password.confirmed' => 'Wprowadzone hasła różnią się od siebie',
-            'avatar.mimes'       => 'Avatar ma być w odpowiednim formacie'
+            'fullname.required'  => 'This field is required',
+            'email.required'     => 'This field is required',
+            'email.string'       => 'Email is invalid',
+            'email.unique'       => 'Email is already taken',
+            'email.email'        => 'Email is invalid',
+            'password.min'       => 'Password must contain minimum 6 characters',
+            'password.confirmed' => 'Passwords are not match',
         ];
     }
 }

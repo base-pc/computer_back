@@ -33,10 +33,10 @@ class LoginUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'To pole jest wymagane',
-            'email.email'    => 'Wprowadzony adres jest niepoprawny',
-            'email.string'   => 'Wprowadzony email jest niepoprawny',
-            'password.min'   => 'Hasło ma miec 6 znaków',
+            'email.required' => 'This field is required',
+            'email.email'    => 'Email is invalid',
+            'email.string'   => 'Email is invalid',
+            'password.min'   => 'Password must contain minimum 6 characters',
         ];
     }
 

@@ -30,7 +30,7 @@ class EloquentProduct implements ProductRepository
 	}
 
 
-	public function store($user,$category_id, array $attributes, $upload)
+	public function store($user, $category_id, array $attributes, $upload)
 	{
 		$category = Category::findOrFail($category_id);
 
