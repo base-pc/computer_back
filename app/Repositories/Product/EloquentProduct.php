@@ -5,7 +5,6 @@ namespace App\Repositories\Product;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\UploadService;
-use Spatie\Searchable\Search;
 
 
 class EloquentProduct implements ProductRepository
@@ -40,7 +39,7 @@ class EloquentProduct implements ProductRepository
 		$this->model->user_id       = $user->id;
 		$this->model->product_owner = $user->fullname;
 		$this->model->category_id   = $category->id;
-		$this->model->product_owner = $user->name;
+		$this->model->product_owner = $user->fullname;
 		$this->model->photo_url     = $this->upload->getPhotoUrl();
 		$this->model->photo_name    = $this->upload->getPhotoName();
 
@@ -64,17 +63,9 @@ class EloquentProduct implements ProductRepository
 		$product->delete($product_id);
 	}
 
-	public function search($request)
+	public function find($request)
 	{
-		$searchResults = (new Search())
-			->registerModel(Product::class, [
-				'name',
-				'manufacturer',
-				'price',
-				'quantity',
-			])
-			->perform($request->get('search'));
-
-		return $searchResults;
+		$request = $this->model->search($request)->get();
 	}
+
 }

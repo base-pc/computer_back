@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductStoreRrequest;
+use App\Http\Requests\ProductSearchRequest;
 use App\Repositories\Product\ProductRepository;
 
 class ProductController extends Controller
@@ -46,9 +47,9 @@ class ProductController extends Controller
         $this->product->destroy($product_id);
     }
 
-    public function search(Request $request)
+    public function search(ProductSearchRequest $request)
     {
-        return $this->product->search($request);
+        return $this->product->find($request->input('search'));
     }
 }
 

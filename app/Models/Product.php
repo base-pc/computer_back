@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Searchable\Searchable;
-use Spatie\Searchable\SearchResult;
+use Laravel\Scout\Searchable;
 
-class Product extends Model implements Searchable
+class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'user_id',
@@ -28,6 +27,8 @@ class Product extends Model implements Searchable
     protected $hidden = [
         'photo',
         'photo_name',
+        'created_at',
+        'updated_at'
 
     ];
 
@@ -49,14 +50,6 @@ class Product extends Model implements Searchable
     public function categories()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function getSearchResult(): SearchResult
-    {
-        return new \Spatie\Searchable\SearchResult(
-            $this,
-            $this->name,
-        );
     }
 
     public function rates()
