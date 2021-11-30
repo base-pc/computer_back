@@ -36,7 +36,7 @@ class EloquentUser implements UserRepository
 		$this->model->save();
 	}
 
-	public function googleCallback($user,$social)
+	public function providerCallback($user,$social)
 	{
 		return $social->SocialLogin($user);
 

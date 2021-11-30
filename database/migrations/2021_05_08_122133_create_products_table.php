@@ -26,6 +26,8 @@ class CreateProductsTable extends Migration
             $table->string('photo')->nullable();
             $table->string('photo_name')->nullable();
             $table->string('photo_url')->nullable();
+            $table->float('rate')->default(0.00);
+            $table->integer('rates_time')->default(0);
 
             $table->timestamps();
 

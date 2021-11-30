@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\Rate;
 
-class IsAdminMiddleware
+class HasRatedMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +17,17 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() || !auth()->user()->is_admin)
+        $user = auth()->user();
+        $id = $request->route('product_id');
+
+        $hasRate = Rate::where([
+            'user_id'    => $user->id,
+            'product_id' => $id
+        ])->exists();
+
+        if($hasRate)
         {
-            abort(403, 'Unauthorized');
+            abort(403, 'You rated this product before');
         }
 
         return $next($request);
