@@ -3,10 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RateController;
 
 
 /*
@@ -29,8 +30,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
     Route::post('login',              [ AuthController::class, 'login']);
 });
 
-Route::get('google',             [ GoogleController::class, 'redirectToGoogle']);
-Route::get('google/callback',    [ GoogleController::class, 'handleGoogleCallback']);
+Route::post('provider/callback',   [ SocialController::class, 'handleProviderCallback']);
 
 Route::get('product/all',                 [ ProductController::class, 'index']);
 Route::get('product/show/{product_id}',   [ ProductController::class, 'show']);
@@ -41,7 +41,7 @@ Route::get('category/show/{category_id}', [ CategoryController::class, 'show']);
 
 
 
-Route::middleware(['is_admin', 'jwt.auth'])->group(function () {
+Route::middleware(['is_admin'])->group(function () {
 
     Route::post('product/store/category/{category_id}', [ ProductController::class, 'store']);
     Route::delete('product/{product_id}/destroy',       [ ProductController::class, 'destroy']);
@@ -51,9 +51,12 @@ Route::middleware(['is_admin', 'jwt.auth'])->group(function () {
     Route::delete('category/{category_id}/destroy',     [ CategoryController::class, 'destroy']);
 });
 
-Route::middleware(['jwt.auth'])->group(function () {
+Route::middleware(['is_user'])->group(function () {
 
     Route::post('product/comment/{product_id}/store', [ CommentController::class, 'store']);
+
+    Route::post('product/rate/{product_id}',    [ RateController::class, 'store'])
+        ->middleware('has_rated');
 
 });
 

@@ -58,4 +58,9 @@ class Product extends Model implements Searchable
             $this->name,
         );
     }
+
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
 }

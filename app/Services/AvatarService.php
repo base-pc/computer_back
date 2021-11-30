@@ -8,21 +8,24 @@ use Illuminate\Support\Str;
 
 class AvatarService
 {
-    public function generate ($user)
+
+    public function generate($user)
     {
-        $image_name = Str::random(20);
+        $image_name  = Str::random(10);
 
-        $avatar = new Avatar(config('laravolt.avatar'));
-        $avatar->create($user->fullname)
-               ->save(storage_path(
-                   'app/public/avatars/'.$image_name.'.png',
-                   $quality = 100
-               ));
+        $avatar      = new Avatar(config('laravolt.avatar'));
 
-        $image_url = Storage::disk('avatars')
-            ->url('avatars/'.$image_name.'.png');
+        $user_avatar = $avatar->create($user->name);
+
+        $user_avatar->save(Storage::disk('s3')
+            ->put('avatars/'.$image_name, $user_avatar->toSvg()));
+
+
+        $image_url = Storage::disk('s3')
+            ->url('avatars/'.$image_name);
 
         return $image_url;
     }
+
 }
 

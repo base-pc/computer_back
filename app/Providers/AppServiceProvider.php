@@ -11,6 +11,8 @@ use App\Repositories\Comment\CommentRepository;
 use App\Repositories\Category\EloquentCategory;
 use App\Repositories\Product\EloquentProduct;
 use App\Repositories\Comment\EloquentComment;
+use App\Repositories\Rate\EloquentRate;
+use App\Repositories\Rate\RateRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CategoryRepository::class, EloquentCategory::class);
         $this->app->singleton(ProductRepository::class, EloquentProduct::class);
         $this->app->singleton(CommentRepository::class, EloquentComment::class);
+        $this->app->singleton(RateRepository::class, EloquentRate::class);
 
     }
 }
