@@ -6,7 +6,7 @@ services:
       dockerfile: .docker/Dockerfile
     image: 'webshop_app'
     ports:
-      - 8080:80
+      - 8081:80
     volumes:
       - ./:/var/www/html
 
@@ -20,5 +20,26 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: wp
       MYSQL_DATABASE: 'webshop_db'
+
+
+  db2:
+
+    image: mariadb:focal
+    ports:
+      - 8082:3306
+    volumes:
+      - ./mysql2:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wp
+      MYSQL_DATABASE: 'test_db'
+
+
+  meilisearch:
+
+    image: getmeili/meilisearch:latest
+    ports:
+      - 8084:7700
+    volumes:
+      - ./data.ms:/data.ms
 
 

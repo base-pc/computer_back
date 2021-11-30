@@ -15,7 +15,7 @@ interface ProductRepository
 
 	public function destroy($product_id);
 
-	public function search($request);
+	public function find($request);
 
 }
 
