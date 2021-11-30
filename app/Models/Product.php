@@ -20,13 +20,11 @@ class Product extends Model
         'price',
         'quantity',
         'photo',
-        'photo_name',
         'photo_url',
     ];
 
     protected $hidden = [
         'photo',
-        'photo_name',
         'created_at',
         'updated_at'
 

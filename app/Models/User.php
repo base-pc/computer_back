@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use App\Services\AvatarService;
-use App\Services\GoogleService;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -69,24 +67,6 @@ class User extends Authenticatable implements JWTSubject
     public function products(){
 
         return $this->hasMany(Product::class);
-    }
-
-    public function googleCallback($user)
-    {
-        $google = new GoogleService;
-
-        return $google->Glogin($user);
-
-    }
-
-    public function setDefaultAvatar ($user)
-    {
-
-        $avatar = new AvatarService;
-
-        $user->avatar = $avatar->generate($user);
-
-        $user->save();
     }
 }
 

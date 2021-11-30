@@ -38,7 +38,6 @@ class EloquentCategory implements CategoryRepository
 		$this->upload->setImage($upload);
 
 		$this->model->icon_url  = $this->upload->getPhotoUrl();
-		$this->model->icon_name = $this->upload->getPhotoName();
 
 		$category = $this->model->fill($attributes);
 

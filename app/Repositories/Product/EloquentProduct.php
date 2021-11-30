@@ -41,7 +41,6 @@ class EloquentProduct implements ProductRepository
 		$this->model->category_id   = $category->id;
 		$this->model->product_owner = $user->fullname;
 		$this->model->photo_url     = $this->upload->getPhotoUrl();
-		$this->model->photo_name    = $this->upload->getPhotoName();
 
 		$this->model->fill($attributes);
 

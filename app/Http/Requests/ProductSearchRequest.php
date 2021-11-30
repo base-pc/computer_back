@@ -13,7 +13,7 @@ class ProductSearchRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class ProductSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
+            'search' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'search.required' => 'This field is required'
         ];
     }
 }
