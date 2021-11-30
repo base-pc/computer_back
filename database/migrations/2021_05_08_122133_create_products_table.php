@@ -24,7 +24,6 @@ class CreateProductsTable extends Migration
             $table->double('price')->nullable();
             $table->integer('quantity')->nullable();
             $table->string('photo')->nullable();
-            $table->string('photo_name')->nullable();
             $table->string('photo_url')->nullable();
             $table->float('rate')->default(0.00);
             $table->integer('rates_time')->default(0);
