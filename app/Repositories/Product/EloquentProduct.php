@@ -33,13 +33,12 @@ class EloquentProduct implements ProductRepository
 	{
 		$category = Category::findOrFail($category_id);
 
-		$this->upload->setDisk('products');
-		$this->upload->setImage($upload);
+		$this->upload->setDisk('products/');
+		$this->upload->setImage($upload, 400, 400);
 
 		$this->model->user_id       = $user->id;
 		$this->model->product_owner = $user->fullname;
 		$this->model->category_id   = $category->id;
-		$this->model->product_owner = $user->fullname;
 		$this->model->photo_url     = $this->upload->getPhotoUrl();
 
 		$this->model->fill($attributes);

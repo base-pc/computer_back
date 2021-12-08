@@ -20,6 +20,8 @@ class Category extends Model
     protected $hidden = [
         'icon',
         'icon_name',
+        'created_at',
+        'updated_at'
     ];
 
 
