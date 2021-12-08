@@ -9,15 +9,17 @@ class SocialService
 {
     public function SocialLogin($user)
     {
-        $name   = $user->getName();
-        $avatar = $user->getAvatar();
-        $email  = $user->getEmail();
+        $name     = $user->getName();
+        $avatar   = $user->getAvatar();
+        $email    = $user->getEmail();
+        $is_admin = false;
 
 
         $this->user = User::where([
             'fullname' => $name,
             'email'    => $email,
             'avatar'   => $avatar,
+            'is_admin' => $is_admin,
         ])->first();
 
 
@@ -25,6 +27,7 @@ class SocialService
             'fullname' => $name,
             'email'    => $email,
             'avatar'   => $avatar,
+            'is_admin' => $is_admin,
         ]);
 
         $token = JWTAuth::fromUser($user);
@@ -34,6 +37,7 @@ class SocialService
             'fullname'     => $name,
             'email'        => $email,
             'avatar'       => $avatar,
+            'is_admin'     => $is_admin,
         ];
     }
 }

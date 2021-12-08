@@ -10,12 +10,14 @@ use App\Services\UploadService;
 class EloquentProduct implements ProductRepository
 {
 	private $model;
+	private $category;
 	private $upload;
 
-	public function __construct(Product $model, UploadService $upload)
+	public function __construct(Product $model, Category $category, UploadService $upload)
 	{
-		$this->model  = $model;
-		$this->upload = $upload;
+		$this->model    = $model;
+		$this->category = $category;
+		$this->upload   = $upload;
 	}
 
 	public function index()
@@ -28,10 +30,9 @@ class EloquentProduct implements ProductRepository
 		return $this->model->findOrFail($product_id)->with('comments')->get();
 	}
 
-
 	public function store($user, $category_id, array $attributes, $upload)
 	{
-		$category = Category::findOrFail($category_id);
+		$category = $this->category->findOrFail($category_id);
 
 		$this->upload->setDisk('products/');
 		$this->upload->setImage($upload, 400, 400);
@@ -44,7 +45,6 @@ class EloquentProduct implements ProductRepository
 		$this->model->fill($attributes);
 
 		$this->model->saveOrFail();
-
 	}
 
 	public function update($product_id, array $attributes)
@@ -65,5 +65,4 @@ class EloquentProduct implements ProductRepository
 	{
 		$request = $this->model->search($request)->get();
 	}
-
 }
