@@ -15,7 +15,6 @@ class EloquentCategory implements CategoryRepository
 		$this->upload = $upload;
 	}
 
-
 	public function index()
 	{
 		return $this->model->all();
@@ -43,7 +42,6 @@ class EloquentCategory implements CategoryRepository
 
 		$category->saveOrFail();
 	}
-
 
 	public function destroy($category_id)
 	{

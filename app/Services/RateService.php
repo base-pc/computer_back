@@ -7,18 +7,26 @@ use App\Models\Product;
 
 class RateService
 {
+    private $product, $rate;
+
+    public function __construct(Product $product, Rate $rate)
+    {
+        $this->product = $product;
+        $this->rate    = $rate;
+    }
+
     public function calculateRate($product_id)
     {
         $times_rate = null;
 
-        $stall = Product::findOrFail($product_id);
+        $product = $this->product->findOrFail($product_id);
 
-        $total_ratings = Rate::where('product_id', $product_id)->count('rate');
+        $total_ratings = $this->rate->where('product_id', $product_id)->count('rate');
 
         for($i=0; $i<=5; ++$i)
         {
 
-            $rates = Rate::where([
+            $rates = $this->rate->where([
                 'product_id' => $product_id,
                 'rate'     => $i
             ])->count();
@@ -35,14 +43,13 @@ class RateService
 
         $multisum = array_sum($multi);
 
-        $stall_rate = fdiv($multisum,$times_rate);
+        $product_rate = fdiv($multisum,$times_rate);
 
-        $stall->rate       = $stall_rate;
-        $stall->rates_time = $total_ratings;
+        $product->rate       = $product_rate;
+        $product->rates_time = $total_ratings;
 
-        $stall->update();
+        $product->update();
     }
 }
-
 
 ?>
