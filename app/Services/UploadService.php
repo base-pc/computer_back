@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UploadService
 {
@@ -10,22 +11,29 @@ class UploadService
     private $image_url;
     private $disk;
 
-    public function setImage ($upload)
+    public function setImage ($upload, $width, $height)
     {
         if($upload)
         {
             $file_name           = $upload->hashName();
-            $image_uploaded_path = $upload->storeAs($this->disk, $file_name, 's3');
 
-            $image_url           = Storage::disk('s3')->url($image_uploaded_path);
+            $img = Image::make($upload);
+
+            $img->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $resource = $img->stream()->detach();
+
+            $path = Storage::disk('s3')->put(
+                $this->disk . $file_name,
+                $resource
+            );
+
+            $image_url = Storage::disk('s3')->url($this->disk . $file_name);
 
             $this->image_url = $image_url;
             $this->file_name = $file_name;
-
-        }else {
-            $this->file_name = 'default';
-            $this->image_url = Storage::disk('s3')->url($this->disk .'/default.png');
-
         }
     }
 

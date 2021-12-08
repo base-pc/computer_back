@@ -34,8 +34,8 @@ class EloquentCategory implements CategoryRepository
 
 	public function store($user, array $attributes, $upload)
 	{
-		$this->upload->setDisk('categories');
-		$this->upload->setImage($upload);
+		$this->upload->setDisk('categories/');
+		$this->upload->setImage($upload, 100, 100);
 
 		$this->model->icon_url  = $this->upload->getPhotoUrl();
 
