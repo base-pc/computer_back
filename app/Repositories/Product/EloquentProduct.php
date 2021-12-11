@@ -25,6 +25,15 @@ class EloquentProduct implements ProductRepository
 		return $this->model->all();
 	}
 
+	public function random()
+	{
+		try{
+			return $this->model->all()->random(9);
+		}catch (\Exception $e){
+			abort(404, 'Not enough product to display');
+		}
+	}
+
 	public function show($product_id)
 	{
 		return $this->model->findOrFail($product_id)->with('comments')->get();
