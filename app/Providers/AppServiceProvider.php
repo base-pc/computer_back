@@ -13,6 +13,8 @@ use App\Repositories\Product\EloquentProduct;
 use App\Repositories\Comment\EloquentComment;
 use App\Repositories\Rate\EloquentRate;
 use App\Repositories\Rate\RateRepository;
+use App\Repositories\Cart\EloquentCart;
+use App\Repositories\Cart\CartRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ProductRepository::class, EloquentProduct::class);
         $this->app->singleton(CommentRepository::class, EloquentComment::class);
         $this->app->singleton(RateRepository::class, EloquentRate::class);
+        $this->app->singleton(CartRepository::class, EloquentCart::class);
 
     }
 }
