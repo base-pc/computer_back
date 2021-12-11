@@ -7,7 +7,7 @@ use App\Services\UploadService;
 
 class EloquentCategory implements CategoryRepository
 {
-	private $model;
+	private $model, $upload;
 
 	public function __construct(Category $model, UploadService $upload)
 	{

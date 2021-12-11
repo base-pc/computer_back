@@ -9,9 +9,7 @@ use App\Services\UploadService;
 
 class EloquentProduct implements ProductRepository
 {
-	private $model;
-	private $category;
-	private $upload;
+	private $model, $category, $upload;
 
 	public function __construct(Product $model, Category $category, UploadService $upload)
 	{
