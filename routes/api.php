@@ -8,7 +8,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RateController;
-use App\Http\Controllers\CartController;
 
 
 /*
@@ -34,6 +33,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
 Route::post('provider/callback',   [ SocialController::class, 'handleProviderCallback']);
 
 Route::get('product/all',                 [ ProductController::class, 'index']);
+Route::get('product/hot',                 [ ProductController::class, 'hot']);
 Route::get('product/show/{product_id}',   [ ProductController::class, 'show']);
 Route::post('product/search',             [ ProductController::class, 'search']);
 
@@ -60,7 +60,3 @@ Route::middleware(['is_user'])->group(function () {
         ->middleware('has_rated');
 
 });
-
-Route::post('cart/add/{product_id}', [ CartController::class, 'add']);
-Route::get('cart/get',               [ CartController::class, 'getItems']);
-

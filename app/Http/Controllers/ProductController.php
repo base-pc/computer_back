@@ -22,6 +22,11 @@ class ProductController extends Controller
         return $this->product->index();
     }
 
+    public function hot()
+    {
+        return $this->product->random();
+    }
+
     public function show($product_id)
     {
         return $this->product->show($product_id);
