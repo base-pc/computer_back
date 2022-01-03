@@ -70,6 +70,6 @@ class EloquentProduct implements ProductRepository
 
 	public function find($request)
 	{
-		$request = $this->model->search($request)->get();
+		return $request = $this->model->search($request)->get();
 	}
 }
