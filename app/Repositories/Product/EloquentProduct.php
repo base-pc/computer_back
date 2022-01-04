@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Services\UploadService;
 
-
 class EloquentProduct implements ProductRepository
 {
 	private $model, $category, $upload;
@@ -23,6 +22,18 @@ class EloquentProduct implements ProductRepository
 		return $this->model->all();
 	}
 
+	public function show($product_id)
+	{
+		$this->model->findOrFail($product_id);
+
+		$product = $this->model->with('comments')
+						 ->where('id', $product_id)
+						 ->get();
+
+		return $product;
+
+	}
+
 	public function random()
 	{
 		try{
@@ -30,11 +41,6 @@ class EloquentProduct implements ProductRepository
 		}catch (\Exception $e){
 			abort(404, 'Not enough product to display');
 		}
-	}
-
-	public function show($product_id)
-	{
-		return $this->model->findOrFail($product_id)->with('comments')->get();
 	}
 
 	public function store($user, $category_id, array $attributes, $upload)
