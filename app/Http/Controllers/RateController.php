@@ -23,5 +23,14 @@ class RateController extends Controller
         return response()->json(['message'=>'You rated']);
 
     }
+
+    public function showMyRate($product_id)
+    {
+        $user = auth()->user();
+
+        $my_rate =  $this->rate->showMyRate($user, $product_id);
+
+        return $my_rate;
+    }
 }
 
