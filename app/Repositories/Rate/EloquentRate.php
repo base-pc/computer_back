@@ -25,7 +25,18 @@ class EloquentRate implements RateRepository
 
 		$this->rate->calculateRate($product_id);
 	}
-}
 
+	public function showMyRate($user, $product_id)
+	{
+
+		$my_rate = $this->model->where([
+			'product_id' => $product_id,
+			'user_id'    => $user->id,
+		])->get();
+
+		return $my_rate;
+
+	}
+}
 
 ?>

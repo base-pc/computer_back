@@ -59,4 +59,6 @@ Route::middleware(['is_user'])->group(function () {
     Route::post('product/rate/{product_id}',    [ RateController::class, 'store'])
         ->middleware('has_rated');
 
+    Route::get('product/{product_id}/myrate',   [ RateController::class, 'showMyRate']);
+
 });
