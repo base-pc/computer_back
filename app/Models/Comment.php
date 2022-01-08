@@ -20,16 +20,5 @@ class Comment extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function storeComment(User $user, array $data, $id)
-    {
-        $comment = new Comment;
 
-        $comment->comment_author = $user->fullname;
-        $comment->author_avatar  = $user->avatar;
-        $comment->product_id     = $id;
-
-        $comment->fill($data);
-
-        $comment->save();
-    }
 }
