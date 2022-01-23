@@ -46,7 +46,7 @@ Route::middleware(['is_admin'])->group(function () {
 
     Route::post('product/store/category/{category_id}', [ ProductController::class, 'store']);
     Route::delete('product/{product_id}/destroy',       [ ProductController::class, 'destroy']);
-    Route::post('product/{product_id}/update',          [ ProductController::class, 'update']);
+    Route::put('product/{product_id}/update',          [ ProductController::class, 'update']);
 
     Route::post('category/store',                       [ CategoryController::class, 'store']);
     Route::delete('category/{category_id}/destroy',     [ CategoryController::class, 'destroy']);
