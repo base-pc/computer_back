@@ -31,7 +31,13 @@ class EloquentComment implements CommentRepository
 		$this->model->comment_author = $user->fullname;
 		$this->model->author_avatar  = $user->avatar;
 		$this->model->product_id     = $product->id;
-		$this->model->myrate         = $my_rate->rate;
+
+
+		if($my_rate)
+		{
+			$this->model->myrate         = $my_rate->rate;
+
+		}
 
 		$this->model->fill($attributes);
 

@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'is_admin'=> \App\Http\Middleware\IsAdminMiddleware::class,
         'is_user'=> \App\Http\Middleware\IsUserMiddleware::class,
         'has_rated'=> \App\Http\Middleware\HasRatedMiddleware::class,
+        'has_commented'=> \App\Http\Middleware\HasCommentedMiddleware::class,
     ];
 }
