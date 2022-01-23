@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
             $table->string('comment_author')->nullable();
             $table->string('author_avatar')->nullable();
             $table->unsignedBigInteger('product_id');
-            $table->integer('myrate')->nullable();
+            $table->integer('myrate')->default(0);
             $table->timestamps();
 
             $table->foreign('product_id')

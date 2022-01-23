@@ -54,7 +54,8 @@ Route::middleware(['is_admin'])->group(function () {
 
 Route::middleware(['is_user'])->group(function () {
 
-    Route::post('product/comment/{product_id}/store', [ CommentController::class, 'store']);
+    Route::post('product/comment/{product_id}/store', [ CommentController::class, 'store'])
+        ->middleware('has_commented');
 
     Route::post('product/rate/{product_id}',    [ RateController::class, 'store'])
         ->middleware('has_rated');
