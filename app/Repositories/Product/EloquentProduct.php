@@ -60,9 +60,17 @@ class EloquentProduct implements ProductRepository
 		$this->model->saveOrFail();
 	}
 
-	public function update($product_id, array $attributes)
+	public function update($product_id, array $attributes, $upload)
 	{
 		$product = $this->model->findOrFail($product_id);
+
+		if($upload)
+		{
+			$this->upload->setDisk('products/');
+			$this->upload->setImage($upload, 400, 400);
+
+			$product->photo_url = $this->update->getPhotoUrl();
+		}
 
 		$product->update($attributes);
 	}

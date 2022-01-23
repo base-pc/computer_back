@@ -13,7 +13,7 @@ interface ProductRepository
 
 	public function store($user, $product_id, array $attributes, $upload);
 
-	public function update($product_id, array $attributes);
+	public function update($product_id, array $attributes, $upload);
 
 	public function destroy($product_id);
 
