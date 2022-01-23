@@ -43,7 +43,9 @@ class ProductController extends Controller
 
     public function update(Request $request, $product_id)
     {
-        return $this->product->update($product_id, $request->all());
+        $upload = $this->product->photo = $request->file('photo');
+
+        return $this->product->update($product_id, $request->all(), $upload);
 
     }
 
