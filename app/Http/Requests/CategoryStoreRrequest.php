@@ -24,7 +24,7 @@ class CategoryStoreRrequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'requied|string|between:3:35',
+            'name' => 'requied|string|between:3,35',
             'icon' => 'requied|image:jpeg,png,svg|max:4048'
         ];
     }
