@@ -7,8 +7,7 @@ use Treestoneit\ShoppingCart\CartManager;
 
 class CartService
 {
-    private $product;
-    private $cart;
+    private $product, $cart;
 
     public function __construct(Product $product, CartManager $cart)
     {
@@ -22,7 +21,7 @@ class CartService
 
         $product  = $this->product->findOrFail($product_id);
 
-        $quantity = 2;
+        $quantity = 1;
 
         $this->cart->add($product, $quantity);
 
@@ -35,11 +34,33 @@ class CartService
         return $this->cart->loadUserCart($user)->getModel();
     }
 
+    public function updateAmount($item_id, $quantity)
+    {
+
+        $item = $this->cart->content()->find($item_id);
+
+        $this->cart->update($item->id, $item->quantity + $quantity);
+
+    }
+
+    public function deleteCartItem($item_id)
+    {
+
+        $item = $this->cart->content()->find($item_id);
+
+        $this->cart->remove($item->id);
+
+    }
+
     public function getSubtotal()
     {
         return $this->cart->subtotal();
     }
 
+    public function getItemCounter()
+    {
+        return $this->cart->count();
+    }
 }
 
 ?>
