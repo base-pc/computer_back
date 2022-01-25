@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\CartService;
+use App\Repositories\Cart\CartRepository;
 use App\Http\Requests\CartRequest;
 
 class CartController extends Controller
 {
     private $cart;
 
-    public function __construct(CartService $cart)
+    public function __construct(CartRepository $cart)
     {
         $this->cart = $cart;
     }
