@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RateController;
+use App\Http\Controllers\CartController;
 
 
 /*
@@ -61,5 +62,9 @@ Route::middleware(['is_user'])->group(function () {
         ->middleware('has_rated');
 
     Route::get('product/{product_id}/myrate',   [ RateController::class, 'showMyRate']);
+
+    Route::post('cart/{product_id}/store', [ CartController::class, 'cartStore']);
+    Route::get('cart/get',                 [ CartController::class, 'getCart']);
+    Route::get('cart/total',               [ CartController::class, 'getTotal']);
 
 });

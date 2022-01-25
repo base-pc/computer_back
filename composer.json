@@ -18,6 +18,7 @@
         "laravolt/avatar": "^4.1",
         "league/flysystem-aws-s3-v3": "^1.0",
         "meilisearch/meilisearch-php": "^0.19.2",
+        "treestoneit/shopping-cart": "^1.4",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
