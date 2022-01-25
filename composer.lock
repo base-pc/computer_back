@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c1e340cf260ac3263f224786b3db015",
+    "content-hash": "2be1934c70490ad59bd208c0c2e9364a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6635,6 +6635,77 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.4"
             },
             "time": "2021-12-08T09:12:39+00:00"
+        },
+        {
+            "name": "treestoneit/shopping-cart",
+            "version": "v1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/treeStoneIT/shopping-cart.git",
+                "reference": "44cd3af487e423b59bba8122460389fa94fb9369"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/treeStoneIT/shopping-cart/zipball/44cd3af487e423b59bba8122460389fa94fb9369",
+                "reference": "44cd3af487e423b59bba8122460389fa94fb9369",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/config": "^6.0|^7.0|^8.0",
+                "illuminate/database": "^6.20.12|^7.30.4|^8.22.1",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Treestoneit\\ShoppingCart\\CartServiceProvider"
+                    ],
+                    "aliases": {
+                        "Cart": "Treestoneit\\ShoppingCart\\Facades\\Cart"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Treestoneit\\ShoppingCart\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Avraham Appel",
+                    "email": "avraham@bomshteyn.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An easy-to-use shopping cart for Laravel",
+            "homepage": "https://github.com/treestoneit/shopping-cart",
+            "keywords": [
+                "laravel",
+                "shopping-cart",
+                "treestoneit"
+            ],
+            "support": {
+                "issues": "https://github.com/treeStoneIT/shopping-cart/issues",
+                "source": "https://github.com/treeStoneIT/shopping-cart/tree/v1.4.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/treestoneit",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-02-19T04:13:48+00:00"
         },
         {
             "name": "tymon/jwt-auth",

@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use Treestoneit\ShoppingCart\Buyable;
+use Treestoneit\ShoppingCart\BuyableTrait;
 
-class Product extends Model
+class Product extends Model implements Buyable
 {
-    use HasFactory, Searchable;
+    use HasFactory, Searchable, BuyableTrait ;
 
     protected $fillable = [
         'user_id',
@@ -29,6 +31,11 @@ class Product extends Model
         'updated_at'
 
     ];
+
+    public function getBuyablePrice()
+    {
+        return $this->price;
+    }
 
     public function user()
     {
