@@ -8,8 +8,7 @@ use App\Models\Rate;
 
 class CommentController extends Controller
 {
-    private $comment;
-    private $rate;
+    private $comment, $rate;
 
     public function __construct(CommentRepository $comment, Rate $rate)
     {
