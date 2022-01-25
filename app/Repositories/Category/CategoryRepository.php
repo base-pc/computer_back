@@ -7,7 +7,7 @@ interface CategoryRepository
 
 	public function show($category_id);
 
-	public function store($user, array $attributes, $upload);
+	public function store($user, array $attributes);
 
 	public function destroy($category_id);
 }

@@ -20,18 +20,14 @@ class EloquentComment implements CommentRepository
 	{
 		$product = Product::findOrFail($product_id);
 
-
 		$my_rate = $rate->where([
 			'product_id' => $product_id,
 			'user_id'    => $user->id,
 		])->first();
 
-
-
 		$this->model->comment_author = $user->fullname;
 		$this->model->author_avatar  = $user->avatar;
 		$this->model->product_id     = $product->id;
-
 
 		if($my_rate)
 		{
@@ -46,5 +42,4 @@ class EloquentComment implements CommentRepository
 	}
 
 }
-
 

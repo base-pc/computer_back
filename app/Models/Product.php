@@ -20,7 +20,6 @@ class Product extends Model implements Buyable
         'fullname',
         'manufacturer',
         'price',
-        'quantity',
         'photo',
         'photo_url',
     ];

@@ -24,7 +24,7 @@ class StoreCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'opinion' => 'required|string|between:5,250',
+            'opinion' => 'required|string|between:2,250',
 
         ];
     }
@@ -33,7 +33,7 @@ class StoreCommentRequest extends FormRequest
     {
         return [
             'opinion.required' => 'This field is required',
-            'opinion.between' => 'Enter 5-250 characters',
+            'opinion.between'  => 'Enter 2-250 characters',
         ];
     }
 }

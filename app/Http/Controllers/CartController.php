@@ -48,6 +48,13 @@ class CartController extends Controller
 
     }
 
+    public function destroyCart()
+    {
+        $this->cart->deleteCart();
+
+        return response()->json(['Cart has been destroyed']);
+    }
+
     public function getTotal()
     {
         $total = $this->cart->getSubtotal();

@@ -20,7 +20,6 @@ class AvatarService
         $user_avatar->save(Storage::disk('s3')
             ->put('avatars/'.$image_name, $user_avatar->toSvg()));
 
-
         $image_url = Storage::disk('s3')
             ->url('avatars/'.$image_name);
 
