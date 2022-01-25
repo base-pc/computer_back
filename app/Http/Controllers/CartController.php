@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Services\CartService;
+use App\Http\Requests\CartRequest;
 
 class CartController extends Controller
 {
@@ -26,11 +26,26 @@ class CartController extends Controller
 
     public function getCart()
     {
-        $user = auth()->user();
+        $user  = auth()->user();
 
         $items = $this->cart->getCartItems($user);
 
         return $items;
+    }
+
+    public function updateQuantity($item_id, CartRequest $request)
+    {
+        $this->cart->updateAmount($item_id, $request->get('quantity'));
+
+        return response()->json(['Cart item has been updated']);
+    }
+
+    public function destroy($item_id)
+    {
+        $this->cart->deleteCartItem($item_id);
+
+        return response()->json(['Cart item has been deleted']);
+
     }
 
     public function getTotal()
@@ -39,6 +54,13 @@ class CartController extends Controller
 
         return $total;
 
+    }
+
+    public function getCounter()
+    {
+        $counter = $this->cart->getItemCounter();
+
+        return $counter;
     }
 
 }

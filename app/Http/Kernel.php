@@ -53,18 +53,19 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'auth'             => \App\Http\Middleware\Authenticate::class,
+        'auth.basic'       => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'cache.headers'    => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can'              => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest'            => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'is_admin'=> \App\Http\Middleware\IsAdminMiddleware::class,
-        'is_user'=> \App\Http\Middleware\IsUserMiddleware::class,
-        'has_rated'=> \App\Http\Middleware\HasRatedMiddleware::class,
-        'has_commented'=> \App\Http\Middleware\HasCommentedMiddleware::class,
+        'signed'           => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'throttle'         => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'is_admin'         => \App\Http\Middleware\IsAdminMiddleware::class,
+        'is_user'          => \App\Http\Middleware\IsUserMiddleware::class,
+        'has_rated'        => \App\Http\Middleware\HasRatedMiddleware::class,
+        'has_commented'    => \App\Http\Middleware\HasCommentedMiddleware::class,
+        'cart_item_exist'  => \App\Http\Middleware\CartItemMiddleware::class,
     ];
 }
