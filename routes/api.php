@@ -1,5 +1,9 @@
 <?php
 
+header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Headers: *');
+header('Access-Control-Allow-Origin: *');
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -63,11 +67,13 @@ Route::middleware(['is_user'])->group(function () {
 
     Route::get('product/{product_id}/myrate',   [ RateController::class, 'showMyRate']);
 
-    Route::post('cart/{product_id}/store',  [ CartController::class, 'cartStore']);
-    Route::get('cart/get',                  [ CartController::class, 'getCart']);
-    Route::get('cart/total',                [ CartController::class, 'getTotal']);
-    Route::get('cart/counter',              [ CartController::class, 'getCounter']);
-    Route::post('cart/update/{item_id}',    [ CartController::class, 'updateQuantity'])
+    Route::post('cart/{product_id}/store', [ CartController::class, 'cartStore']);
+    Route::get('cart/get',                 [ CartController::class, 'getCart']);
+    Route::get('cart/total',               [ CartController::class, 'getTotal']);
+    Route::get('cart/counter',             [ CartController::class, 'getCounter']);
+    Route::delete('cart/delete',           [ CartController::class, 'destroyCart']);
+
+    Route::post('cart/update/{item_id}',   [ CartController::class, 'updateQuantity'])
         ->middleware('cart_item_exist');
 
     Route::delete('cart/destroy/{item_id}', [ CartController::class, 'destroy'])

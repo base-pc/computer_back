@@ -7,15 +7,13 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class UploadService
 {
-    private $file_name;
-    private $image_url;
-    private $disk;
+    private $file_name, $image_url, $disk;
 
     public function setImage ($upload, $width, $height)
     {
         if($upload)
         {
-            $file_name           = $upload->hashName();
+            $file_name = $upload->hashName();
 
             $img = Image::make($upload);
 

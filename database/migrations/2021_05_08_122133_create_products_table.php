@@ -20,9 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('product_owner')->nullable();
             $table->string('name')->nullable();
             $table->string('manufacturer')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->double('price')->nullable();
-            $table->integer('quantity')->nullable();
             $table->string('photo')->nullable();
             $table->string('photo_url')->nullable();
             $table->float('rate')->default(0.00);

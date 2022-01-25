@@ -52,6 +52,11 @@ class CartService
 
     }
 
+    public function deleteCart()
+    {
+        $this->cart->destroy();
+    }
+
     public function getSubtotal()
     {
         return $this->cart->subtotal();

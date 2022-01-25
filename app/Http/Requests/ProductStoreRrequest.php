@@ -26,9 +26,8 @@ class ProductStoreRrequest extends FormRequest
         return [
             'name'         => 'required|string|between:5,20',
             'manufacturer' => 'required|string|between:2,20',
-            'description'  => 'required|string|max:500',
+            'description'  => 'required|string|max:3000',
             'price'        => 'required|numeric',
-            'quantity'     => 'required|numeric',
             'photo'        => 'required|image:jpeg,png,svg|max:4048'
         ];
     }
@@ -40,13 +39,11 @@ class ProductStoreRrequest extends FormRequest
             'name.between'         => 'Enter 5-20 characters',
             'price.required'       => 'This field is required',
             'price.numeric'        => 'This field must be numeric',
-            'quantity.required'    => 'This field is required',
-            'quantity.numeric'     => 'This field must be numeric',
             'photo.required'       => 'This field is required',
             'photo.image'          => 'You must enter correct file format',
             'photo.max'            => 'Photo cant be bigger than 4mb',
             'description.required' => 'This field is requied',
-            'description.max'      => 'This field can contain max 500 characters'
+            'description.max'      => 'This field can contain max 3000 characters'
 
         ];
     }

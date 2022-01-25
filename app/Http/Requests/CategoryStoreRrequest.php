@@ -25,7 +25,6 @@ class CategoryStoreRrequest extends FormRequest
     {
         return [
             'name' => 'requied|string|between:3,35',
-            'icon' => 'requied|image:jpeg,png,svg|max:4048'
         ];
     }
 
@@ -33,8 +32,6 @@ class CategoryStoreRrequest extends FormRequest
     {
         return [
             'name.requied' => 'This field is requied',
-            'icon.requied' => 'This field is requied',
-            'icon.image'   => 'You must enter correct file format',
         ];
     }
 }

@@ -28,9 +28,7 @@ class CategoryController extends Controller
     {
         $user = auth()->user();
 
-        $upload = $this->category->icon = $request->file('icon');
-
-        return $this->category->store($user, $request->all(), $upload);
+        return $this->category->store($user, $request->all());
     }
 
     public function destroy($category_id)
