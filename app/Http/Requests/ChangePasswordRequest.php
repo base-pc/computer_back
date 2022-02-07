@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartRequest extends FormRequest
+class ChangePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,8 @@ class CartRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => 'required|numeric'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'quantity.required' => 'This field is required',
-            'quantity.numeric'  => 'Quantity must be numeric value,'
+            'email'    => 'required|email',
+            'password' => 'required|confirmed'
         ];
     }
 }
