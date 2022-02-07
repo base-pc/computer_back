@@ -13,6 +13,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RateController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ChangePasswordController;
 
 
 /*
@@ -35,7 +37,11 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
     Route::post('login',              [ AuthController::class, 'login']);
 });
 
-Route::post('provider/callback',   [ SocialController::class, 'handleProviderCallback']);
+Route::post('provider/callback', [ SocialController::class, 'handleProviderCallback']);
+
+Route::post('send/reset/link',   [ ResetPasswordController::class, 'sendEmail']);
+Route::post('reset/password',    [ ChangePasswordController::class, 'process']);
+
 
 Route::get('product/all',                 [ ProductController::class, 'index']);
 Route::get('product/hot',                 [ ProductController::class, 'hot']);
