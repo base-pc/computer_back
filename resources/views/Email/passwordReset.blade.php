@@ -1,12 +1,14 @@
 @component('mail::message')
-    # Introduction
+# Resetowanie hasła
 
-    The body of your message.
+Aby zresetować swoje hasło w sklepie BASE-PC kliknij w przycisk znajdujący
+się poniżej.
 
-    @component('mail::button', ['url' =>'http://localhost:8080/#/home/password_reset?token='.$token])
+@component('mail::button', ['url' =>'http://localhost:8080/#/home/password_reset?token='.$token])
         Resetuj hasło
-    @endcomponent
-
-    Thanks,<br>
-    {{ config('app.name') }}
 @endcomponent
+
+Dziękujemy i życzymy udanych zakupów<br>
+
+@endcomponent
+
