@@ -69,7 +69,7 @@ class EloquentProduct implements ProductRepository
 			$this->upload->setDisk('products/');
 			$this->upload->setImage($upload, 400, 400);
 
-			$product->photo_url = $this->update->getPhotoUrl();
+			$product->photo_url = $this->upload->getPhotoUrl();
 		}
 
 		$product->update($attributes);

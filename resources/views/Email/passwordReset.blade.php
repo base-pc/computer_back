@@ -1,12 +1,12 @@
 @component('mail::message')
-    # Introduction
+# Introduction
 
-    The body of your message.
+The body of your message.
 
-    @component('mail::button', ['url' =>'http://localhost:8080/#/home/password_reset?token='.$token])
-        Resetuj hasło
-    @endcomponent
+@component('mail::button', ['url' =>'https://basepc.store/#/home/password_reset?token='.$token])
+Resetuj hasło
+@endcomponent
 
-    Thanks,<br>
-    {{ config('app.name') }}
+Thanks,<br>
+{{ config('app.name') }}
 @endcomponent

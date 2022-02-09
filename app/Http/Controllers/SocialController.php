@@ -32,6 +32,6 @@ class SocialController extends Controller
 
         $social_user = $this->user->providerCallback($user, $this->social);
 
-        return response()->json([$social_user]);
+        return response($social_user);
     }
 }

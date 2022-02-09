@@ -39,9 +39,8 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
 
 Route::post('provider/callback', [ SocialController::class, 'handleProviderCallback']);
 
-Route::post('send/reset/link',   [ ResetPasswordController::class, 'sendEmail']);
-Route::post('reset/password',    [ ChangePasswordController::class, 'process']);
-
+Route::post('send/reset/link',   [ ResetPasswordController::class, 'resetUserPassword']);
+Route::post('reset/password',    [ ChangePasswordController::class, 'changeUserPassword']);
 
 Route::get('product/all',                 [ ProductController::class, 'index']);
 Route::get('product/hot',                 [ ProductController::class, 'hot']);
