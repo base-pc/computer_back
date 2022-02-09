@@ -13,6 +13,7 @@ class SocialService
         $avatar   = $user->getAvatar();
         $email    = $user->getEmail();
         $is_admin = false;
+        $social_user = true;
 
 
         $this->user = User::where([
@@ -20,6 +21,7 @@ class SocialService
             'email'    => $email,
             'avatar'   => $avatar,
             'is_admin' => $is_admin,
+            'social_user' => $social_user,
         ])->first();
 
 
@@ -28,6 +30,7 @@ class SocialService
             'email'    => $email,
             'avatar'   => $avatar,
             'is_admin' => $is_admin,
+            'social_user' => $social_user,
         ]);
 
         $token = JWTAuth::fromUser($user);
@@ -36,7 +39,7 @@ class SocialService
             'access_token' => $token,
             'fullname'     => $name,
             'email'        => $email,
-            'avatar'       => $avatar,
+            'user_avatar'       => $avatar,
             'is_admin'     => $is_admin,
         ];
     }

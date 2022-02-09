@@ -14,5 +14,9 @@ interface UserRepository
 
 	public function providerCallback($user, SocialService $social);
 
+	public function resetPassword($request);
+
+	public function changePassword($request);
+
 }
 
