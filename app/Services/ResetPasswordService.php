@@ -29,14 +29,18 @@ class ResetPasswordService
     public function validateEmail($email):bool
     {
 
-        return !!User::where('email', $email)->first();
+        return  !User::where([
+            'email'       => $email,
+            'social_user' => true,
+        ])->first();
+
     }
 
     public function faildResponse()
     {
         return response()
             ->json(
-                ['error' => 'Email doesnt found in database'],
+                ['error' => 'Email doesnt found in database or google user'],
                 Response::HTTP_NOT_FOUND
             );
     }
