@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Repositories\User\UserRepository;
 
 use Illuminate\Http\Request;
@@ -19,7 +20,6 @@ class ResetPasswordController extends Controller
         $this->user->resetPassword($request);
 
         return response()->json(['success' => 'Email was send']);
-
     }
 
 }

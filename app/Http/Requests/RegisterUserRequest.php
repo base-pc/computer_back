@@ -28,8 +28,6 @@ class RegisterUserRequest extends FormRequest
             'password' => 'required|string|confirmed|min:6',
             'avatar'   => 'mimes:jpeg,png',
             'is_admin' => 'bool'
-
-            //
         ];
     }
 

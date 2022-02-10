@@ -7,7 +7,6 @@ use App\Repositories\User\UserRepository;
 
 class ChangePasswordController extends Controller
 {
-
     private $user;
 
     public function __construct(UserRepository $user)
@@ -21,6 +20,5 @@ class ChangePasswordController extends Controller
         $this->user->changePassword($request);
 
         return response()->json(['data' => 'Password successfully changed']);
-
     }
 }

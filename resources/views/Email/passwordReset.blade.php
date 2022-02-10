@@ -1,4 +1,5 @@
 @component('mail::message')
+
 # Restuj hasło
 
 Kliknij poniższy przycisk aby zresetować swoje hasło w sklepie BasePC
@@ -7,4 +8,6 @@ Resetuj hasło
 @endcomponent
 
 Życzymy udanych zakupów BasePC<br>
+
 @endcomponent
+

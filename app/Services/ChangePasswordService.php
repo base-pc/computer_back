@@ -10,13 +10,12 @@ class ChangePasswordService
 
     public function process(ChangePasswordRequest $request)
     {
+       $this->changePassword($request);      
 
-        $this->changePassword($request);
     }
 
     private function changePassword($request)
     {
-
         $user = User::where('email', $request->email)->first();
 
         $row = DB::table('password_resets')
@@ -27,5 +26,5 @@ class ChangePasswordService
         $row->delete();
     }
 }
-
 ?>
+

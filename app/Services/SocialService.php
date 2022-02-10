@@ -39,7 +39,7 @@ class SocialService
             'access_token' => $token,
             'fullname'     => $name,
             'email'        => $email,
-            'user_avatar'       => $avatar,
+            'user_avatar'  => $avatar,
             'is_admin'     => $is_admin,
         ];
     }

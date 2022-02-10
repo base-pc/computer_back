@@ -17,7 +17,7 @@ class ResetPasswordService
         $this->send($request->email);
 
     }
-
+  
     public function send($email)
     {
         $token = $this->createToken($email);
