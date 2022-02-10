@@ -18,7 +18,9 @@ class ChangePasswordController extends Controller
     public function changeUserPassword(ChangePasswordRequest $request)
 
     {
-        return $this->user->changePassword($request);
+        $this->user->changePassword($request);
+
+        return response()->json(['data' => 'Password successfully changed']);
 
     }
 }

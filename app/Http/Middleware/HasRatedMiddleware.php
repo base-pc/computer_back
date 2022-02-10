@@ -18,7 +18,7 @@ class HasRatedMiddleware
     public function handle(Request $request, Closure $next)
     {
         $user = auth()->user();
-        $id = $request->route('product_id');
+        $id   = $request->route('product_id');
 
         $hasRate = Rate::where([
             'user_id'    => $user->id,
