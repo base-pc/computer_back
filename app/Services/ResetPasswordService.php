@@ -3,8 +3,6 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordMail;
@@ -16,42 +14,7 @@ class ResetPasswordService
 
     public function sendEmail(Request $request)
     {
-        if(!$this->validateEmail($request->email))
-        {
-            return $this->faildResponse();
-
-        }
         $this->send($request->email);
-
-        return $this->successResponse();
-    }
-
-    public function validateEmail($email):bool
-    {
-
-        return  User::where([
-            'email'       => $email,
-            'social_user' => false,
-        ])->exists();
-
-    }
-
-    public function faildResponse()
-    {
-        return response()
-            ->json(
-                ['error' => 'Email doesnt found in database or google user'],
-                Response::HTTP_NOT_FOUND
-            );
-    }
-
-    public function successResponse()
-    {
-        return response()
-            ->json(
-                ['data' => 'Reset email is send'],
-                Response::HTTP_OK
-            );
 
     }
 
@@ -87,9 +50,7 @@ class ResetPasswordService
             'created_at' => Carbon::now()
 
         ]);
-
     }
-
 }
 
 ?>

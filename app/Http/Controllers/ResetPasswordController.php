@@ -16,7 +16,9 @@ class ResetPasswordController extends Controller
 
     public function resetUserPassword(Request $request)
     {
-        return $this->user->resetPassword($request);
+        $this->user->resetPassword($request);
+
+        return response()->json(['success' => 'Email was send']);
 
     }
 

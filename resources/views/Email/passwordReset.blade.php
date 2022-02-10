@@ -1,12 +1,10 @@
 @component('mail::message')
-# Introduction
+# Restuj hasło
 
-The body of your message.
-
-@component('mail::button', ['url' =>'https://basepc.store/#/home/password_reset?token='.$token])
+Kliknij poniższy przycisk aby zresetować swoje hasło w sklepie BasePC
+@component('mail::button', ['url' =>'http://localhost:8080/#/home/password_reset?token='.$token])
 Resetuj hasło
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+Życzymy udanych zakupów BasePC<br>
 @endcomponent
