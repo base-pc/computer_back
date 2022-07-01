@@ -31,7 +31,6 @@ class ProductFactory extends Factory
             'manufacturer' => $this->faker->title,
             'description'  => $this->faker->paragraph,
             'price'        => $this->faker->randomFloat(2),
-            'quantity'     => $this->faker->randomDigit,
             'category_id'  => 1,
             'user_id'      => 1,
             'photo'        => $image->create('file.png'),

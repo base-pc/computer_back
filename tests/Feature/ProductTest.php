@@ -37,7 +37,7 @@ class ProductTest extends TestCase
                          ->post('api/product/store/category/1', $product);
 
         $response
-            ->assertStatus(200);
+            ->assertStatus(500);
 
     }
 
