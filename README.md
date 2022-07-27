@@ -2,7 +2,14 @@
 
 It is the backend part of the "Base PC" application which is an online store.
 
-The application is a project made for the purposes of the diploma thesis at The Witelon State University of Applied Sciences in Legnica
+The application is a project made for the purposes of the diploma thesis at The Witelon State University of Applied Sciences in Legnica.
+
+The store has the option of setting up two types of accounts (system
+administrator and ordinary user).
+
+Each of them has individual rights that define access to particular functions of the online store.
+For example admins can manage products and categories but only ordinary users can
+shop.
 
 ## Tech/framework used 🔧
 
